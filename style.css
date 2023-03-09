@@ -1,0 +1,194 @@
+/* Reset credit to Kevin Powell and from 
+CSS Reset from https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+/*
+    Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+    Remove default margin
+*/
+* {
+    margin: 0;
+}
+
+/*
+    Allow percentage-based heights in the application
+*/
+html,
+body {
+    height: 100%;
+}
+
+/* 
+    Set core root defaults 
+*/
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/*
+    Typographic tweaks!
+    Add accessible line-height
+    Improve text rendering
+*/
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+    Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/*
+    Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/*
+    Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* 
+Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed
+*/
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/*
+    Create a root stacking context
+*/
+#root,
+#__next {
+    isolation: isolate;
+}
+
+:root {
+    --clr-primary-1-500: hsl(35, 77%, 62%);
+    --clr-primary-2-500: hsl(5, 85%, 63%);
+
+    --clr-secondary-1-100: hsl(36, 100%, 99%);
+    --clr-secondary-2-300: hsl(233, 8%, 79%);
+    --clr-secondary-3-700: hsl(236, 13%, 42%);
+    --clr-secondary-4-900: hsl(240, 100%, 5%);
+
+    --fs-base: 15px;
+    --fw-base: 400;
+    --fw-bold: 700;
+    --fw-dark: 800;
+    --ff-base: 'Inter', sans-serif;
+
+    --wd-mobile: 375px;
+    --wd-desktop: 1440px;
+}
+
+body {
+    font-size: var(--fs-normal);
+    font-family: var(--ff-base);
+    font-weight: var(--fw-base);
+}
+
+/* utility classes */
+.flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 1rem; */
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.grid-group {
+    display: grid;
+    gap: 1rem;
+    border: 2px solid hotpink;
+    /* padding: 2rem; */
+}
+
+.grid-col {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+}
+
+.pale-blue-text {
+    color: var(--clr-secondary-3-700);
+}
+
+/* components */
+.btn {
+    margin-block: 1rem;
+    padding: .5rem 1rem;
+    outline-color: transparent;
+
+    background: var(--clr-primary-2-500);
+    color: var(--clr-secondary-1-100);
+    font-size: calc(var(--fs-base)*.75);
+    letter-spacing: .25rem;
+    text-transform: uppercase;
+}
+
+.btn:focus-visible {
+    outline: 3px solid hotpink;
+    outline-offset: 3px;
+}
+
+/* main layout */
+
+.container {
+    max-width: var(--wd-desktop);
+    padding: 2rem 0;
+    margin-inline: auto;
+    /* grid-template-columns: repeat(3, 1fr); */
+}
+
+.article.feature img {
+    /* grid-column: 1 / 2; */
+}
