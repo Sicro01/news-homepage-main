@@ -1,3 +1,25 @@
+/*
+    variables
+ */
+:root {
+    --clr-primary-1-500: hsl(35, 77%, 62%);
+    --clr-primary-2-500: hsl(5, 85%, 63%);
+
+    --clr-secondary-1-100: hsl(36, 100%, 99%);
+    --clr-secondary-2-300: hsl(233, 8%, 79%);
+    --clr-secondary-3-700: hsl(236, 13%, 42%);
+    --clr-secondary-4-900: hsl(240, 100%, 5%);
+
+    --fs-base: 15px;
+    --fw-base: 400;
+    --fw-bold: 700;
+    --fw-dark: 800;
+    --ff-base: 'Inter', sans-serif;
+
+    --wd-mobile: 375px;
+    --wd-desktop: 1440px;
+}
+
 /* Reset credit to Kevin Powell and from 
 CSS Reset from https://www.joshwcomeau.com/css/custom-css-reset/
 */
@@ -79,14 +101,27 @@ h6 {
 }
 
 /* 
-Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed
+    Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed
 */
 ul[role="list"],
 ol[role="list"] {
     list-style: none;
 }
 
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+/*
+    Remove underline from ul links where role is set to list
+*/
+ul[role="list"] :is(a:link, a:visited, a:hover, a:active) {
+    text-decoration: none;
+}
+
+hr {
+    border: none;
+}
+
+/*
+    Remove all animations, transitions and smooth scroll for people that prefer not to see them
+*/
 @media (prefers-reduced-motion: reduce) {
     html:focus-within {
         scroll-behavior: auto;
@@ -110,36 +145,19 @@ ol[role="list"] {
     isolation: isolate;
 }
 
-:root {
-    --clr-primary-1-500: hsl(35, 77%, 62%);
-    --clr-primary-2-500: hsl(5, 85%, 63%);
-
-    --clr-secondary-1-100: hsl(36, 100%, 99%);
-    --clr-secondary-2-300: hsl(233, 8%, 79%);
-    --clr-secondary-3-700: hsl(236, 13%, 42%);
-    --clr-secondary-4-900: hsl(240, 100%, 5%);
-
-    --fs-base: 15px;
-    --fw-base: 400;
-    --fw-bold: 700;
-    --fw-dark: 800;
-    --ff-base: 'Inter', sans-serif;
-
-    --wd-mobile: 375px;
-    --wd-desktop: 1440px;
-}
-
 body {
     font-size: var(--fs-normal);
     font-family: var(--ff-base);
     font-weight: var(--fw-base);
 }
 
-/* utility classes */
+/*
+    utility classes
+*/
 .flex-group {
     display: flex;
     flex-wrap: wrap;
-    /* gap: 1rem; */
+    gap: 1rem;
 }
 
 .flex-col {
@@ -150,7 +168,6 @@ body {
     display: grid;
     gap: 1rem;
     border: 2px solid hotpink;
-    /* padding: 2rem; */
 }
 
 .grid-col {
@@ -158,14 +175,19 @@ body {
     grid-auto-columns: 1fr;
 }
 
+.grid-stretch {
+    place-items: start end;
+}
+
 .pale-blue-text {
     color: var(--clr-secondary-3-700);
 }
 
-/* components */
+/*
+    components
+*/
 .btn {
-    margin-block: 1rem;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     outline-color: transparent;
 
     background: var(--clr-primary-2-500);
@@ -173,6 +195,11 @@ body {
     font-size: calc(var(--fs-base)*.75);
     letter-spacing: .25rem;
     text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--clr-secondary-4-900);
 }
 
 .btn:focus-visible {
@@ -180,15 +207,210 @@ body {
     outline-offset: 3px;
 }
 
-/* main layout */
-
-.container {
-    max-width: var(--wd-desktop);
-    padding: 2rem 0;
-    margin-inline: auto;
-    /* grid-template-columns: repeat(3, 1fr); */
+/* hamburger */
+.btn-hamburger {
+    background: transparent;
+    border: 0;
+    display: flex;
 }
 
-.article.feature img {
-    /* grid-column: 1 / 2; */
+.btn-hamburger .line {
+    transition:
+        rotate 300ms ease-in,
+        y 300ms ease-in 300ms,
+        opacity 0ms 300ms;
+    transform-origin: center;
+}
+
+.btn-hamburger[aria-expanded="true"] .line {
+    transition:
+        y 300ms ease-in,
+        rotate 300ms ease-in 300ms,
+        opacity 0ms 300ms;
+}
+
+.btn-hamburger[aria-expanded="true"] :is(.line__top, .line__bottom) {
+    y: 45px;
+}
+
+.btn-hamburger[aria-expanded="true"] .line__top {
+    rotate: 45deg;
+}
+
+.btn-hamburger[aria-expanded="true"] .line__middle {
+    opacity: 0;
+}
+
+.btn-hamburger[aria-expanded="true"] .line__bottom {
+    rotate: -45deg;
+}
+
+/* main layout */
+.container {
+    --container-padding: 1rem 3rem;
+    --container-gap: 3rem;
+    grid-template-columns: minmax(10rem, auto);
+
+    grid-template-areas:
+        'nav'
+        'article-feature'
+        'article-new'
+        'article-one'
+        'article-two'
+        'article-three'
+    ;
+
+    padding: var(--container-padding);
+    gap: var(--container-gap);
+    margin-inline: auto;
+    border: 2px solid red;
+
+    color: var(--clr-secondary-3-700);
+}
+
+/* grid areas */
+.nav {
+    grid-area: nav;
+}
+
+.article-feature {
+    grid-area: article-feature;
+}
+
+.article-new {
+    grid-area: article-new;
+}
+
+.one-article {
+    grid-area: article-one;
+}
+
+.two-article {
+    grid-area: article-two;
+}
+
+.three-article {
+    grid-area: article-three;
+}
+
+/* nav */
+.nav-menu-list {
+    display: none;
+}
+
+.nav a {
+    color: var(--clr-secondary-3-700);
+}
+
+.nav a:hover {
+    color: var(--clr-primary-2-500);
+}
+
+.nav {
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* feature article */
+.article-feature__title {
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--clr-secondary-4-900);
+    font-weight: var(--fw-dark);
+}
+
+.article-feature__wrapper .btn {
+    border: 2px solid blue;
+    place-self: end start;
+}
+
+/* new article */
+.article-new {
+    background: black;
+    padding: 1rem 2rem;
+    gap: 3rem;
+}
+
+.article-new a {
+    color: var(--clr-secondary-1-100);
+    text-decoration: none;
+}
+
+.article-new a:hover {
+    color: var(--clr-primary-1-500);
+}
+
+.article-new__title {
+    color: var(--clr-primary-1-500);
+    font-size: calc(var(--fs-base)*2);
+}
+
+.article-new>hr {
+    border-bottom: 2px solid var(--clr-secondary-3-700);
+}
+
+.article-new__heading {
+    color: var(--clr-secondary-1-100);
+    font-size: calc(var(--fs-base)*1);
+    padding-bottom: 0.5rem;
+}
+
+/* numbered articles */
+.article-numbered {
+    grid-template-columns: 1fr 1.5fr;
+}
+
+.article-numbered img {
+    height: 100%;
+}
+
+.article-numbered__heading {
+    color: var(--clr-secondary-2-300);
+    font-size: 3rem;
+}
+
+.article-numbered__subheading {
+    color: var(--clr-secondary-4-900);
+    font-weight: var(--fw-dark);
+    font-size: 1rem;
+}
+
+.article-numbered a {
+    color: var(--clr-secondary-4-900);
+    text-decoration: none;
+}
+
+.article-numbered a:hover {
+    color: var(--clr-primary-2-500);
+}
+
+@media (min-width: 600px) {
+
+    /* swap hamburger for menu list */
+    .btn-hamburger {
+        display: none;
+    }
+
+    .nav-menu-list {
+        display: flex;
+    }
+
+    /* split feature article details into 2 cols */
+    .article-feature__wrapper {
+        grid-template-columns: repeat(2, minmax(10rem, auto));
+        gap: var(--container-gap);
+    }
+}
+
+@media (min-width: 1000px) {
+    .container {
+        grid-template-columns: repeat(3, minmax(2.5rem, 25rem));
+
+        grid-template-areas:
+            'nav nav nav'
+            'article-feature article-feature article-new'
+            'article-feature article-feature article-new'
+            'article-one article-two article-three'
+        ;
+    }
 }
