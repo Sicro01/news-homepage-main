@@ -1,12 +1,15 @@
-const btnHamburger = document.querySelector('.btn-hamburger');
+const primaryNav = document.querySelector('.primary-navigation');
+const navToggle = document.querySelector('.mobile-nav-toggle');
 
-btnHamburger.addEventListener('click', () => {
-    const isOpened = btnHamburger.getAttribute('aria-expanded');
-    console.log(isOpened);
-    if (isOpened === 'false') {
-        btnHamburger.setAttribute('aria-expanded', 'true');
+navToggle.addEventListener('click', () => {
+    const visibility = primaryNav.getAttribute('data-visible');
+    console.log(visibility);
+    if (visibility === 'false') {
+        primaryNav.setAttribute('data-visible', "true");
+        navToggle.setAttribute('aria-expanded', "true");
     } else {
-        btnHamburger.setAttribute('aria-expanded', 'false');
+        primaryNav.setAttribute('data-visible', "false");
+        navToggle.setAttribute('aria-expanded', "false");
 
     }
 })

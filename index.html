@@ -14,48 +14,66 @@
 </head>
 
 <body>
-  <main class="container grid-group">
+  <main class="container grid">
+    <header class="flex primary-header">
 
-    <nav class="flex-group nav">
-      <img src="./assets/images/logo.svg" alt="W logo">
-      <ul role="list" class="flex-group nav-menu-list">
-        <li><a href="">Home</a></li>
-        <li><a href="">New</a></li>
-        <li><a href="">Popular</a></li>
-        <li><a href="">Trending</a></li>
-        <li><a href="">Categories</a></li>
-      </ul>
-      <button class="btn-hamburger" aria-controls="primary-navigation" aria-expanded="false">
-        <svg fill="var(--clr-secondary-4-900)" class="hamburger" viewBox="0 0 100 100" width="50">
+      <div>
+        <img src="./assets/images/logo.svg" alt="Capital W which is the site logo" class="logo">
+      </div>
+
+      <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+        <svg fill="var(--clr-secondary-4-900)" viewBox="0 0 100 100" width="50">
           <rect class="line line__top" width="80" height="10" x="10" y="25" rx="5"></rect>
           <rect class="line line__middle" width="80" height="10" x="10" y="45" rx="5"></rect>
           <rect class="line line__bottom" width="80" height="10" x="10" y="65" rx="5"></rect>
         </svg>
+        <span class="sr-only">Menu</span>
       </button>
-    </nav>
 
-    <article class="grid-group article-feature">
+      <nav>
+        <ul data-visible="false" class="flex primary-navigation list-reset">
+          <li>
+            <a href="">Home</a>
+          </li>
+          <li>
+            <a href="">New</a>
+          </li>
+          <li>
+            <a href="">Popular</a>
+          </li>
+          <li>
+            <a href="">Trending</a>
+          </li>
+          <li>
+            <a href="">Categories</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article class="grid article-feature">
       <picture>
         <source srcset="./assets/images/image-web-3-desktop.jpg"
             media="(min-width: 600px)">
-        <img src="./assets/images/image-web-3-mobile.jpg" alt="abstract image depicting web 3 concept">
+        <img src="./assets/images/image-web-3-mobile.jpg"
+            alt="abstract image depicting web 3 concept">
       </picture>
 
-      <div class="grid-group article-feature__wrapper">
+      <div class="grid article-feature__wrapper">
         <p class="article-feature__title">The Bright Future of Web 3.0?</p>
-        <div class="grid-group">
+        <div class="grid article-feature__text">
           <p>We dive into the next evolution of the web that claims to put the power of
             the platforms back
             into the hands
             of the people. But is it really fulfilling its promise?</p>
-          <button class="btn">Read More</button>
+          <button class="btn uppercase letter-spacing-2">Read More</button>
         </div>
       </div>
     </article>
 
-    <article class="grid-group article-new">
+    <article class="grid article-new">
       <h2 class="article-new__title">New</h2>
-      <div class="article-new__content">
+      <div>
         <h3 class="article-new__heading"><a href="">Hydrogen VS Electric Cars</a></h3>
         <p>Will hydrogen-fueled cars ever catch up to EVs?</p>
       </div>
@@ -72,32 +90,35 @@
       </div>
     </article>
 
-    <article class="grid-group article-numbered">
+    <article class="grid article-numbered article-one">
       <img src="./assets/images/image-retro-pcs.jpg" alt="image of selection of retro pcs">
-      <div class="grid-group article-numbered__content">
+      <div class="grid article-numbered__content">
         <h4 class="article-numbered__heading">01</h4>
         <h5 class="article-numbered__subheading"><a href="">Reviving Retro PCs</a></h5>
         <p>What happens when old PCs are given modern upgrades?</p>
       </div>
     </article>
-
-    <article class="grid-group article-numbered">
+    <article class="grid article-numbered article-two">
       <img src="./assets/images/image-top-laptops.jpg" alt="top laptops">
-      <div class="grid-group">
+      <div class="grid">
         <h4 class="article-numbered__heading">02</h4>
         <h5 class="article-numbered__subheading"><a href="">Top 10 Laptops of 2022</a></h5>
-        <p class="article-numbered__text">Our best picks for various needs and budgets.</p>
+        <p>Our best picks for various needs and budgets.</p>
       </div>
     </article>
-
-    <article class="grid-group article-numbered">
+    <article class="grid article-numbered article-three">
       <img src="./assets/images/image-gaming-growth.jpg" alt="gaming growth">
-      <div class="grid-group article-two__content">
+      <div class="grid article-two__content">
         <h4 class="article-numbered__heading">03</h4>
         <h5 class="article-numbered__subheading"><a href="">The Growth of Gaming</a></h5>
         <p>How the pandemic has sparked fresh opportunities.</p>
       </div>
     </article>
+
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Simon Cropper</a>.
+    </div>
 
   </main>
 
